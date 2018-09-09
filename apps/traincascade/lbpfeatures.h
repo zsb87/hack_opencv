@@ -15,7 +15,7 @@ class CvLBPEvaluator : public CvFeatureEvaluator
 public:
     virtual ~CvLBPEvaluator() {}
     virtual void init(const CvFeatureParams *_featureParams,
-        int _maxSampleCount, cv::Size _winSize );
+        int _maxSampleCount, cv::Size _winSize, const string _posFilename, const string _negFilename );
     virtual void setImage(const cv::Mat& img, uchar clsLabel, int idx);
     virtual float operator()(int featureIdx, int sampleIdx) const
     { return (float)features[featureIdx].calc( sum, sampleIdx); }
