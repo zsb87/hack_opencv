@@ -14,7 +14,7 @@ CvHOGFeatureParams::CvHOGFeatureParams()
     featSize = N_BINS * N_CELLS;
 }
 
-void CvHOGEvaluator::init(const CvFeatureParams *_featureParams, int _maxSampleCount, Size _winSize)
+void CvHOGEvaluator::init(const CvFeatureParams *_featureParams, int _maxSampleCount, Size _winSize, const string _posFilename, const string _negFilename )
 {
     CV_Assert( _maxSampleCount > 0);
     int cols = (_winSize.width + 1) * (_winSize.height + 1);
@@ -23,7 +23,7 @@ void CvHOGEvaluator::init(const CvFeatureParams *_featureParams, int _maxSampleC
         hist.push_back(Mat(_maxSampleCount, cols, CV_32FC1));
     }
     normSum.create( (int)_maxSampleCount, cols, CV_32FC1 );
-    CvFeatureEvaluator::init( _featureParams, _maxSampleCount, _winSize );
+    CvFeatureEvaluator::init( _featureParams, _maxSampleCount, _winSize, _posFilename, _negFilename );
 }
 
 void CvHOGEvaluator::setImage(const Mat &img, uchar clsLabel, int idx)

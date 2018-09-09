@@ -85,14 +85,14 @@ bool CvHaarFeatureParams::scanAttr( const string prmName, const string val)
 //--------------------- HaarFeatureEvaluator ----------------
 
 void CvHaarEvaluator::init(const CvFeatureParams *_featureParams,
-                           int _maxSampleCount, Size _winSize )
+                           int _maxSampleCount, Size _winSize, const string _posFilename, const string _negFilename )
 {
     CV_Assert(_maxSampleCount > 0);
     int cols = (_winSize.width + 1) * (_winSize.height + 1);
     sum.create((int)_maxSampleCount, cols, CV_32SC1);
     tilted.create((int)_maxSampleCount, cols, CV_32SC1);
     normfactor.create(1, (int)_maxSampleCount, CV_32FC1);
-    CvFeatureEvaluator::init( _featureParams, _maxSampleCount, _winSize );
+    CvFeatureEvaluator::init( _featureParams, _maxSampleCount, _winSize, _posFilename, _negFilename );
 }
 
 void CvHaarEvaluator::setImage(const Mat& img, uchar clsLabel, int idx)
@@ -122,6 +122,10 @@ void CvHaarEvaluator::writeFeature(FileStorage &fs, int fi) const
     features[fi].write(fs);
 }
 
+void CvHaarEvaluator::generateFeatures() {
+    
+}
+/*
 void CvHaarEvaluator::generateFeatures()
 {
     int mode = ((const CvHaarFeatureParams*)((CvFeatureParams*)featureParams))->mode;
@@ -247,7 +251,7 @@ void CvHaarEvaluator::generateFeatures()
     }
     numFeatures = (int)features.size();
 }
-
+*/
 CvHaarEvaluator::Feature::Feature()
 {
     tilted = false;

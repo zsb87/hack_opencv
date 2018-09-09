@@ -12,11 +12,11 @@ CvLBPFeatureParams::CvLBPFeatureParams()
     name = LBPF_NAME;
 }
 
-void CvLBPEvaluator::init(const CvFeatureParams *_featureParams, int _maxSampleCount, Size _winSize)
+void CvLBPEvaluator::init(const CvFeatureParams *_featureParams, int _maxSampleCount, Size _winSize, const string _posFilename, const string _negFilename)
 {
     CV_Assert( _maxSampleCount > 0);
     sum.create((int)_maxSampleCount, (_winSize.width + 1) * (_winSize.height + 1), CV_32SC1);
-    CvFeatureEvaluator::init( _featureParams, _maxSampleCount, _winSize );
+    CvFeatureEvaluator::init( _featureParams, _maxSampleCount, _winSize, _posFilename, _negFilename );
 }
 
 void CvLBPEvaluator::setImage(const Mat &img, uchar clsLabel, int idx)

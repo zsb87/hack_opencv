@@ -20,7 +20,7 @@ class CvHOGEvaluator : public CvFeatureEvaluator
 public:
     virtual ~CvHOGEvaluator() {}
     virtual void init(const CvFeatureParams *_featureParams,
-        int _maxSampleCount, cv::Size _winSize );
+        int _maxSampleCount, cv::Size _winSize, const string _posFilename, const string _negFilename );
     virtual void setImage(const cv::Mat& img, uchar clsLabel, int idx);
     virtual float operator()(int varIdx, int sampleIdx) const;
     virtual void writeFeatures( cv::FileStorage &fs, const cv::Mat& featureMap ) const;

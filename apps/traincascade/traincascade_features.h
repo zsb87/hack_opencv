@@ -77,7 +77,7 @@ class CvFeatureEvaluator
 public:
     virtual ~CvFeatureEvaluator() {}
     virtual void init(const CvFeatureParams *_featureParams,
-                      int _maxSampleCount, cv::Size _winSize );
+                      int _maxSampleCount, cv::Size _winSize, const string _posFilename, const string _negFilename );
     virtual void setImage(const cv::Mat& img, uchar clsLabel, int idx);
     virtual void writeFeatures( cv::FileStorage &fs, const cv::Mat& featureMap ) const = 0;
     virtual float operator()(int featureIdx, int sampleIdx) const = 0;
@@ -96,6 +96,9 @@ protected:
     cv::Size winSize;
     CvFeatureParams *featureParams;
     cv::Mat cls;
+
+    string posFilename;
+    string negFilename;
 };
 
 #endif

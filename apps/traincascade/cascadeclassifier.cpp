@@ -167,7 +167,7 @@ bool CvCascadeClassifier::train( const string _cascadeDirName,
         stageParams = makePtr<CvCascadeBoostParams>();
         *stageParams = _stageParams;
         featureEvaluator = CvFeatureEvaluator::create(cascadeParams.featureType);
-        featureEvaluator->init( featureParams, numPos + numNeg, cascadeParams.winSize );
+        featureEvaluator->init( featureParams, numPos + numNeg, cascadeParams.winSize, _posFilename, _negFilename );
         stageClassifiers.reserve( numStages );
     }else{
         // Make sure that if model parameters are preloaded, that people are aware of this,

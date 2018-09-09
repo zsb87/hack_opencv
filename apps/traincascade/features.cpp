@@ -66,13 +66,16 @@ Ptr<CvFeatureParams> CvFeatureParams::create( int featureType )
 //------------------------------------- FeatureEvaluator ---------------------------------------
 
 void CvFeatureEvaluator::init(const CvFeatureParams *_featureParams,
-                              int _maxSampleCount, Size _winSize )
+                              int _maxSampleCount, Size _winSize, const string _posFilename, const string _negFilename )
 {
     CV_Assert(_maxSampleCount > 0);
     featureParams = (CvFeatureParams *)_featureParams;
     winSize = _winSize;
     numFeatures = 0;
     cls.create( (int)_maxSampleCount, 1, CV_32FC1 );
+
+    posFilename = _posFilename;
+    negFilename = _negFilename;
     generateFeatures();
 }
 
